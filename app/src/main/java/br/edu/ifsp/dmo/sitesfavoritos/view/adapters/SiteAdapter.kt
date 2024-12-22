@@ -11,9 +11,9 @@ import br.edu.ifsp.dmo.sitesfavoritos.model.Site
 import br.edu.ifsp.dmo.sitesfavoritos.view.listeners.SiteItemClickListener
 
 class SiteAdapter(
-    val context: Context,
-    val dataset: List<Site>,
-    val listener: SiteItemClickListener
+    private val context: Context,
+    private val dataset: List<Site>,
+    private val listener: SiteItemClickListener
 ) : RecyclerView.Adapter<SiteAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
