@@ -1,4 +1,4 @@
-package br.edu.ifsp.dmo.sitesfavoritos.view.adapters
+package br.edu.ifsp.dmo.sitesfavoritos.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ifsp.dmo.sitesfavoritos.R
 import br.edu.ifsp.dmo.sitesfavoritos.databinding.ItemViewBinding
-import br.edu.ifsp.dmo.sitesfavoritos.model.Site
-import br.edu.ifsp.dmo.sitesfavoritos.view.listeners.SiteItemClickListener
+import br.edu.ifsp.dmo.sitesfavoritos.data.model.Site
+import br.edu.ifsp.dmo.sitesfavoritos.ui.listeners.SiteItemClickListener
 
 class SiteAdapter(
     private val context: Context,

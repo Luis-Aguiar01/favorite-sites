@@ -1,4 +1,4 @@
-package br.edu.ifsp.dmo.sitesfavoritos.view
+package br.edu.ifsp.dmo.sitesfavoritos.ui.main
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import br.edu.ifsp.dmo.sitesfavoritos.R
 import br.edu.ifsp.dmo.sitesfavoritos.databinding.ActivityMainBinding
 import br.edu.ifsp.dmo.sitesfavoritos.databinding.SitesDialogBinding
-import br.edu.ifsp.dmo.sitesfavoritos.model.Site
-import br.edu.ifsp.dmo.sitesfavoritos.view.adapters.SiteAdapter
-import br.edu.ifsp.dmo.sitesfavoritos.view.listeners.SiteItemClickListener
+import br.edu.ifsp.dmo.sitesfavoritos.data.model.Site
+import br.edu.ifsp.dmo.sitesfavoritos.ui.adapters.SiteAdapter
+import br.edu.ifsp.dmo.sitesfavoritos.ui.listeners.SiteItemClickListener
 
 class MainActivity : AppCompatActivity(), SiteItemClickListener {
     private lateinit var binding: ActivityMainBinding

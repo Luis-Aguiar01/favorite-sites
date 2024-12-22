@@ -1,4 +1,4 @@
-package br.edu.ifsp.dmo.sitesfavoritos.view.listeners
+package br.edu.ifsp.dmo.sitesfavoritos.ui.listeners
 
 interface SiteItemClickListener {
 
