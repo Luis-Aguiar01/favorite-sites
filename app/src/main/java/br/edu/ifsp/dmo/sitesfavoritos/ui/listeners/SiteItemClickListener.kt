@@ -1,8 +1,10 @@
 package br.edu.ifsp.dmo.sitesfavoritos.ui.listeners
 
+import br.edu.ifsp.dmo.sitesfavoritos.data.model.Site
+
 interface SiteItemClickListener {
 
-    fun clickSiteItem(position: Int)
+    fun clickSiteItem(site: Site)
 
-    fun clickHeartSiteItem(position: Int)
+    fun clickHeartSiteItem(site: Site)
 }

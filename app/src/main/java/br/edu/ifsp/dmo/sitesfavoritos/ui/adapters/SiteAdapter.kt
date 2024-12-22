@@ -12,7 +12,7 @@ import br.edu.ifsp.dmo.sitesfavoritos.ui.listeners.SiteItemClickListener
 
 class SiteAdapter(
     private val context: Context,
-    private val dataset: List<Site>,
+    private var dataset: List<Site>,
     private val listener: SiteItemClickListener
 ) : RecyclerView.Adapter<SiteAdapter.ViewHolder>() {
 
@@ -36,11 +36,16 @@ class SiteAdapter(
             holder.binding.imgHeart.setColorFilter(context.getColor(R.color.gray))
         }
 
-        holder.binding.imgHeart.setOnClickListener{ listener.clickHeartSiteItem(position) }
-        holder.binding.layoutItem.setOnClickListener{ listener.clickSiteItem(position) }
+        holder.binding.imgHeart.setOnClickListener{ listener.clickHeartSiteItem(item) }
+        holder.binding.layoutItem.setOnClickListener{ listener.clickSiteItem(item) }
     }
 
     override fun getItemCount(): Int {
         return dataset.size
+    }
+
+    fun update(newValues: List<Site>) {
+        dataset = newValues
+        notifyDataSetChanged()
     }
 }

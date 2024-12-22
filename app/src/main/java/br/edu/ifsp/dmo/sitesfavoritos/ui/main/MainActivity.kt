@@ -6,6 +6,8 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ifsp.dmo.sitesfavoritos.R
@@ -16,29 +18,38 @@ import br.edu.ifsp.dmo.sitesfavoritos.ui.adapters.SiteAdapter
 import br.edu.ifsp.dmo.sitesfavoritos.ui.listeners.SiteItemClickListener
 
 class MainActivity : AppCompatActivity(), SiteItemClickListener {
+
     private lateinit var binding: ActivityMainBinding
-    private var datasource = ArrayList<Site>()
+    private lateinit var viewModel: MainViewModel
+    private lateinit var adapter: SiteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
         configListeners()
         configRecyclerView()
+        configObservers()
     }
 
-    override fun clickSiteItem(position: Int) {
-        val site = datasource[position]
+    override fun clickSiteItem(site: Site) {
         val mIntent = Intent(Intent.ACTION_VIEW)
         mIntent.setData(Uri.parse("http://" + site.url))
         startActivity(mIntent)
     }
 
-    override fun clickHeartSiteItem(position: Int) {
-        val site = datasource[position]
+    override fun clickHeartSiteItem(site: Site) {
         site.favorite = !site.favorite
         notifyAdapter()
+    }
+
+    private fun configObservers() {
+        viewModel.sites.observe(this, Observer {
+            adapter.update(it)
+        })
     }
 
     private fun configListeners() {
@@ -46,7 +57,8 @@ class MainActivity : AppCompatActivity(), SiteItemClickListener {
     }
 
     private fun configRecyclerView() {
-        val adapter = SiteAdapter(this, datasource, this)
+        val sites = viewModel.sites.value?.toMutableList() ?: mutableListOf()
+        adapter = SiteAdapter(this, sites, this)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         binding.recyclerviewSites.layoutManager = layoutManager
         binding.recyclerviewSites.adapter = adapter
@@ -65,7 +77,7 @@ class MainActivity : AppCompatActivity(), SiteItemClickListener {
             .setTitle(R.string.new_site)
             .setPositiveButton(R.string.save,
                 DialogInterface.OnClickListener { dialog, _ ->
-                    datasource.add(
+                    viewModel.addSite(
                         Site(
                             bindingDialog.edittextApelido.text.toString(),
                             bindingDialog.edittextUrl.text.toString()
