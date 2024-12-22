@@ -38,6 +38,7 @@ class SiteAdapter(
 
         holder.binding.imgHeart.setOnClickListener{ listener.clickHeartSiteItem(item) }
         holder.binding.layoutItem.setOnClickListener{ listener.clickSiteItem(item) }
+        holder.binding.imgDelete.setOnClickListener{ listener.clickRemoveSiteItem(item) }
     }
 
     override fun getItemCount(): Int {

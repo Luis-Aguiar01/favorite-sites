@@ -7,4 +7,6 @@ interface SiteItemClickListener {
     fun clickSiteItem(site: Site)
 
     fun clickHeartSiteItem(site: Site)
+
+    fun clickRemoveSiteItem(site: Site)
 }

@@ -46,6 +46,11 @@ class MainActivity : AppCompatActivity(), SiteItemClickListener {
         notifyAdapter()
     }
 
+    override fun clickRemoveSiteItem(site: Site) {
+        val id = site.id
+        viewModel.removeSite(id)
+    }
+
     private fun configObservers() {
         viewModel.sites.observe(this, Observer {
             adapter.update(it)
